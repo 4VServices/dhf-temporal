@@ -1,0 +1,10 @@
+{
+  "name": "Claims",
+  "steps": {
+    "1": {
+      "stepId": "Claims_Map-mapping"
+    }
+  },
+  "description": "mapping claims",
+  "lastUpdated": "2022-10-10T18:52:19.67878Z"
+}

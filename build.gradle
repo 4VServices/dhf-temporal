@@ -1,0 +1,18 @@
+buildscript {
+  repositories {
+    mavenLocal()
+    maven { url "https://plugins.gradle.org/m2/" }
+    mavenCentral()
+  }
+  dependencies {
+    classpath "com.marklogic:ml-data-hub:5.7.2"
+  }
+}
+
+plugins {
+  // Gradle Properties plugin
+  id 'net.saliman.properties' version '1.4.6'
+
+  // Data Hub plugin
+  id 'com.marklogic.ml-data-hub' version '5.7.2'
+}

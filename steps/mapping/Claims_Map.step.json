@@ -1,0 +1,51 @@
+{
+  "collections": ["claims-batch1"],
+  "stopOnError": true,
+  "additionalCollections": [],
+  "permissions": "data-hub-common,read,data-hub-common,update",
+  "batchSize": 100,
+  "validateEntity": "doNotValidate",
+  "targetFormat": "JSON",
+  "attachSourceDocument": true,
+  "name": "Claims_Map",
+  "targetEntityType": "http://4VServices.com/temporal/Claim-1.0.0/Claim",
+  "collection": "Claims",
+  "selectedSource": "collection",
+  "sourceQuery": "cts.collectionQuery('claims-batch1')",
+  "targetDatabase": "data-hub-FINAL",
+  "headers": {},
+  "interceptors": [],
+  "provenanceGranularityLevel": "off",
+  "customHook": {},
+  "sourceDatabase": "data-hub-STAGING",
+  "stepDefinitionName": "entity-services-mapping",
+  "stepDefinitionType": "mapping",
+  "stepId": "Claims_Map-mapping",
+  "acceptsBatch": true,
+  "properties": {
+    "ClaimId": {
+      "sourcedFrom": "claim/claimId"
+    },
+    "GroupCode": {
+      "sourcedFrom": "claim/groupCode"
+    },
+    "ReceivedDate": {
+      "sourcedFrom": "claim/receivedDate"
+    },
+    "PaidDate": {
+      "sourcedFrom": "claim/paidDate"
+    },
+    "ProviderNPI": {
+      "sourcedFrom": "claim/providerNPI"
+    },
+    "DiagnosticCode": {
+      "sourcedFrom": "claim/diagnosticCode"
+    },
+    "ClaimStatus": {
+      "sourcedFrom": "claim/claimStatus"
+    }
+  },
+  "relatedEntityMappings": [],
+  "uriExpression": "fn:replace($URI, '/batch.', '')",
+  "namespaces": {}
+}

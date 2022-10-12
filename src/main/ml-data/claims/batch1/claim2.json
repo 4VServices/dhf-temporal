@@ -1,0 +1,11 @@
+{
+  "claim": {
+    "claimId": "xyz2",
+    "groupCode": "GP2",
+    "receivedDate": "2022-10-01",
+    "paidDate": null,
+    "providerNPI": "234567890",
+    "diagnosticCode": "R06.7",
+    "claimStatus": "pending"
+  }
+}
