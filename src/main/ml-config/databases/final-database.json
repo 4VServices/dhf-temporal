@@ -4,5 +4,31 @@
   "triggers-database": "%%mlFinalTriggersDbName%%",
   "triple-index": true,
   "collection-lexicon": true,
-  "uri-lexicon": true
+  "uri-lexicon": true,
+  "field": [
+    {
+      "field-name": "claim-system-end",
+      "metadata": "system-end"
+    },
+    {
+      "field-name": "claim-system-start",
+      "metadata": "system-start"
+    }
+  ],
+  "range-field-index": [
+    {
+      "scalar-type": "dateTime",
+      "field-name": "claim-system-end",
+      "collation": "",
+      "range-value-positions": false,
+      "invalid-values": "reject"
+    },
+    {
+      "scalar-type": "dateTime",
+      "field-name": "claim-system-start",
+      "collation": "",
+      "range-value-positions": false,
+      "invalid-values": "reject"
+    }
+  ]
 }

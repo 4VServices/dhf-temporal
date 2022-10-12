@@ -1,5 +1,5 @@
 {
-  "collections": ["claims-batch1"],
+  "collections": ["claim/temporal"],
   "stopOnError": true,
   "additionalCollections": [],
   "permissions": "data-hub-common,read,data-hub-common,update",

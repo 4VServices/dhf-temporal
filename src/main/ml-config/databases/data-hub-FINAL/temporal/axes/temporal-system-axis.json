@@ -1,0 +1,13 @@
+{
+  "axis-name": "claimSystemAxis",
+  "axis-start": {
+    "field-reference": {
+      "field-name": "claim-system-start"
+    }
+  },
+  "axis-end": {
+    "field-reference": {
+      "field-name": "claim-system-end"
+    }
+  }
+}
