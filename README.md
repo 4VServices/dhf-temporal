@@ -124,3 +124,26 @@ xdmp.invokeFunction(
   }
 )
 ```
+
+# De-temporalizing
+
+You get all this set up, your ingest is running, and your data set is growing. You may decide at some point that the
+archived documents created by temporal aren't worth the space. Are you stuck with temporal? No! Here's what you need to
+do to make your documents not use the temporal feature anymore:
+
+1. Remove all documents from the temporal collection. This will likey be a CORB job.
+2. Remove the temporal collection. This requires the `admin` role. This won't happen in the normal course of an
+   application, so I didn't set up an `amp` for this, but you could do so if your use case needs it.
+
+At this point, any user with update permissions on the document will be able to make non-temporal updates (including
+deletes) of the previously temporal documents.
+
+```
+'use strict';
+
+declareUpdate();
+
+const temporal = require("/MarkLogic/temporal.xqy");
+
+temporal.collectionRemove("claim/temporal")
+```
