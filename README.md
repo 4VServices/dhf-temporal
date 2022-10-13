@@ -12,8 +12,8 @@ Modify the path of the `-PoptionsFile` to match your path.
 ```
 ./gradlew mlDeploy -i
 ./gradlew mlLoadData
-./gradlew mlRunFlow -PflowName=Claims -PoptionsFile="C:\users\DavidCassel\git\4V\dhf-temporal\optionsBatch1.json"
-./gradlew mlRunFlow -PflowName=Claims -PoptionsFile="C:\users\DavidCassel\git\4V\dhf-temporal\optionsBatch2.json"
+./gradlew hubRunFlow -PflowName=Claims -PoptionsFile="C:\users\DavidCassel\git\4V\dhf-temporal\optionsBatch1.json"
+./gradlew hubRunFlow -PflowName=Claims -PoptionsFile="C:\users\DavidCassel\git\4V\dhf-temporal\optionsBatch2.json"
 ```
 
 ## What to look at
@@ -86,3 +86,41 @@ There are a couple components needed to use MarkLogic's temporal feature. See th
   - The database configuration includes a field definition for the metadata.
 - steps/mapping/Claims_Map.step.json
   - The target collection for the step is the temporal collection.
+
+# Managing the Archives
+
+Part of the goal of the temporal feature is to ensure that the archived documents are preserved. That means that
+deleting a document under temporal protection is explicitly prohibited -- it will trigger an error. But what if you
+really want to? You may want the archive to be created, but have the ability to clean up the archives at a later time.
+
+When we create the temporal collection, we can specify one of two options. The default is `"updates-safe"`, which
+prohibits any non-temporal change to a temporal document. There is also the `"updates-admin-override"` option, which
+allows a user with the admin role to make updates to a document.
+
+Since we generally don't want to be using the admin role in the normal operation of an application, this project
+encapsulates the deletion within a function, which is then given an amp. Normal (non-admin) users will not be able to
+delete a temporal document, but any user can call this amped function. The function itself asserts that the current
+user has the `temporal-admin` privilege. A user without that privilege who calls that function will still get an error.
+A user with that role will be able to delete a temporal document.
+
+See:
+
+- src/main/ml-config/security/amps/removeArchive.json
+- src/main/ml-modules/root/temporal/temporal-lib.sjs
+
+After deploying these changes and creating a `hub-developer` user that has the `temporal-admin` role, the following
+will work (update the URI to match one in your database):
+
+```
+'use strict';
+
+const temp = require("/temporal/temporal-lib.sjs")
+
+xdmp.invokeFunction(
+  () => temp.removeArchive("/claims/claim2.17589689172117168010.json"),
+  {
+    "update": "true",
+    "userId": xdmp.user("hub-developer")
+  }
+)
+```

@@ -1,4 +1,5 @@
 {
   "collection-name": "claim/temporal",
-  "system-axis": "claimSystemAxis"
+  "system-axis": "claimSystemAxis",
+  "option": ["updates-admin-override"]
 }

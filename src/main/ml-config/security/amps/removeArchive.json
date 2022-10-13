@@ -1,0 +1,7 @@
+{
+  "namespace": "",
+  "local-name": "removeArchive",
+  "document-uri": "/temporal/temporal-lib.sjs",
+  "modules-database": "%%MODULES_DATABASE%%",
+  "role": ["admin"]
+}
