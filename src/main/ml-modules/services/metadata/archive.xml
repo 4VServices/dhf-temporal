@@ -1,0 +1,11 @@
+<metadata>
+  <title>archive</title>
+  <description>
+    <div>
+      Work with archived temporal documents
+    </div>
+  </description>
+  <method name="DELETE">
+    <param name="id" />
+  </method>
+</metadata>
